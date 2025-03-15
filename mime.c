@@ -7,7 +7,8 @@ long long extCode(const char *ext)
 		return 0;
 	}
 	long long rc = 0;
-	strncpy((char *)(&rc), ext, sizeof(rc));
+	strncpy((char *)(&rc),
+			ext, sizeof(rc));
 	return rc;
 }
 
@@ -26,6 +27,9 @@ const char *mimeType(const char *fn)
 	switch (extc)
 	{
 	case EXT_html:
+	{
+		return HTML;
+	}
 	case EXT_htm:
 	{
 		return HTML;
@@ -79,6 +83,9 @@ const char *mimeType(const char *fn)
 		return BMP;
 	}
 	case EXT_jpeg:
+	{
+		return JPEG;
+	}
 	case EXT_jpg:
 	{
 		return JPEG;
@@ -100,6 +107,9 @@ const char *mimeType(const char *fn)
 		return WEBA;
 	}
 	case EXT_mid:
+	{
+		return MIDI;
+	}
 	case EXT_midi:
 	{
 		return MIDI;
@@ -249,6 +259,9 @@ const char *mimeType(const char *fn)
 		return TAR;
 	}
 	case EXT_tif:
+	{
+		return TIFF;
+	}
 	case EXT_tiff:
 	{
 		return TIFF;
@@ -268,6 +281,10 @@ const char *mimeType(const char *fn)
 	case EXT_woff:
 	{
 		return WOFF;
+	}
+	case EXT_woff2:
+	{
+		return WOFF2;
 	}
 	case EXT_xhtml:
 	{

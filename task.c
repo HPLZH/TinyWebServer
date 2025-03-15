@@ -102,9 +102,13 @@ void task(TARGS args)
 					if (ssize == -1)
 					{
 						if (rdata)
+						{
 							free(rdata);
+						}
 						if (sdata)
+						{
 							free(sdata);
+						}
 						send(s, RESPONSE_500, RESPONSE_500_LEN, 0);
 						closesocket(s);
 						return;

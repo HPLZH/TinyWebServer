@@ -25,7 +25,9 @@ int linux_main()
 	serveraddr.sin_port = htons(atoi(port)); // specify port
 
 	// Setup the TCP listening socket
-	iResult = bind(ListenSocket, (const struct sockaddr *)(&serveraddr), sizeof(serveraddr));
+	iResult = bind(ListenSocket,
+				   (const struct sockaddr *)(&serveraddr),
+				   sizeof(serveraddr));
 	if (iResult != 0)
 	{
 		printf("bind failed with error: %s\n", strerror(errno));
@@ -57,7 +59,7 @@ int linux_main()
 		}
 
 		PTARGS argp = malloc(sizeof(TARGS));
-		if(argp)
+		if (argp)
 		{
 			argp->socket = ClientSocket;
 			argp->sockaddr = ClientAddr;

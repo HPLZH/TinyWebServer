@@ -8,10 +8,11 @@
 #define access _access
 #endif
 
-
-int fileCheck(char* buf ,const char* path) 
+int fileCheck(
+	char *buf,
+	const char *path)
 {
-	char* pn;
+	char *pn;
 	strcpy(buf, root);
 	pn = buf + strlen(root);
 	strcat(buf, path);
@@ -28,8 +29,8 @@ int fileCheck(char* buf ,const char* path)
 	{
 		return -404;
 	}
-	char* pls = strrchr(buf, '/');
-	char* pld = strrchr(buf, '.');
+	char *pls = strrchr(buf, '/');
+	char *pld = strrchr(buf, '.');
 	if (pld == NULL || (pls && pld < pls))
 	{
 		strcat(buf, "/");
@@ -38,7 +39,7 @@ int fileCheck(char* buf ,const char* path)
 	{
 		strcat(buf, "index.html");
 	}
-	if (access(buf, R_OK)) 
+	if (access(buf, R_OK))
 	{
 		if (errno == ENOENT)
 		{
@@ -55,29 +56,33 @@ int fileCheck(char* buf ,const char* path)
 	}
 }
 
-long fileLength(FILE* stream) 
+long fileLength(FILE *stream)
 {
 	long file_size = -1;
-	long cur_offset = ftell(stream);	// 获取当前偏移位置
-	if (cur_offset == -1) 
+	long cur_offset = ftell(stream); // 获取当前偏移位置
+	if (cur_offset == -1)
 	{
-		printf("ftell failed :%s\n", strerror(errno));
+		printf("ftell failed :%s\n",
+			   strerror(errno));
 		return -1;
 	}
-	if (fseek(stream, 0, SEEK_END) != 0) 
-	{	
+	if (fseek(stream, 0, SEEK_END) != 0)
+	{
 		// 移动文件指针到文件末尾
-		printf("fseek failed: %s\n", strerror(errno));
+		printf("fseek failed: %s\n",
+			   strerror(errno));
 		return -1;
 	}
-	file_size = ftell(stream);	// 获取此时偏移值，即文件大小
-	if (file_size == -1) 
+	file_size = ftell(stream); // 获取此时偏移值，即文件大小
+	if (file_size == -1)
 	{
-		printf("ftell failed :%s\n", strerror(errno));
+		printf("ftell failed :%s\n",
+			   strerror(errno));
 	}
-	if (fseek(stream, cur_offset, SEEK_SET) != 0) 
-	{	// 将文件指针恢复初始位置
-		printf("fseek failed: %s\n", strerror(errno));
+	if (fseek(stream, cur_offset, SEEK_SET) != 0)
+	{ // 将文件指针恢复初始位置
+		printf("fseek failed: %s\n",
+			   strerror(errno));
 		return -1;
 	}
 	return file_size;

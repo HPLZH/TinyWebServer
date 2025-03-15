@@ -12,9 +12,12 @@ int response(
     size_t contentLength)
 {
     size_t hlength =
-        VER_LEN + SPACE_LEN +
-        strlen(status) + CRLF_LEN +
-        strlen(header) + CRLF_LEN;
+        VER_LEN +
+        SPACE_LEN +
+        strlen(status) +
+        CRLF_LEN +
+        strlen(header) +
+        CRLF_LEN;
 
     *mem = malloc(hlength + contentLength + 1);
     {
@@ -32,52 +35,70 @@ int responseNoContent(
     const char *header)
 {
     size_t hlength =
-        VER_LEN + SPACE_LEN +
-        strlen(status) + CRLF_LEN +
-        strlen(header) + CRLF_LEN;
+        VER_LEN +
+        SPACE_LEN +
+        strlen(status) +
+        CRLF_LEN +
+        strlen(header) +
+        CRLF_LEN;
 
     *mem = malloc(hlength + 1);
     {
         if (mem == NULL)
+        {
             return -1;
+        }
     }
-    sprintf(*mem, "HTTP/1.1 %s\r\n%s\r\n", status, header);
+    sprintf(*mem,
+            "HTTP/1.1 %s\r\n%s\r\n",
+            status,
+            header);
     return hlength;
 }
 
 int BadRequest(
     char **mem)
 {
-    return responseNoContent(mem,
-                             HTTP_400, HEADER_NO_CONTENT);
+    return responseNoContent(
+        mem,
+        HTTP_400,
+        HEADER_NO_CONTENT);
 }
 
 int Forbidden(
     char **mem)
 {
-    return responseNoContent(mem,
-                             HTTP_403, HEADER_NO_CONTENT);
+    return responseNoContent(
+        mem,
+        HTTP_403,
+        HEADER_NO_CONTENT);
 }
 
 int NotFound(
     char **mem)
 {
-    return responseNoContent(mem,
-                             HTTP_404, HEADER_NO_CONTENT);
+    return responseNoContent(
+        mem,
+        HTTP_404,
+        HEADER_NO_CONTENT);
 }
 
 int MethodNotAllowed(
     char **mem)
 {
-    return responseNoContent(mem,
-                             HTTP_405, HEADER_405);
+    return responseNoContent(
+        mem,
+        HTTP_405,
+        HEADER_405);
 }
 
 int InternalServerError(
     char **mem)
 {
-    return responseNoContent(mem,
-                             HTTP_500, HEADER_NO_CONTENT);
+    return responseNoContent(
+        mem,
+        HTTP_500,
+        HEADER_NO_CONTENT);
 }
 
 int HttpCode(char **mem, int code, const char *header)

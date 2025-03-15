@@ -92,20 +92,32 @@ const char* HttpCodeText(int code);
 // header.c
 
 #define HEADER_NO_CONTENT "\
+Access-Control-Allow-Origin: *\r\n\
+Connection: Keep-Alive\r\n\
 Content-Type: text/plain\r\n\
-Content-Length: 0\r\n"
+Content-Length: 0\r\n\
+Server : hplzh-TinyWebServer\r\n\
+"
 
 #define HEADER_405 "\
+Access-Control-Allow-Origin: *\r\n\
 Allow: GET, HEAD\r\n\
+Connection: Keep-Alive\r\n\
 Content-Type: text/plain\r\n\
-Content-Length: 0\r\n"
+Content-Length: 0\r\n\
+Server : hplzh-TinyWebServer\r\n\
+"
 
 #define RESPONSE_500 "\
 HTTP/1.1 500 Internal Server Error\r\n\
+Access-Control-Allow-Origin: *\r\n\
+Connection: Keep-Alive\r\n\
 Content-Type: text/plain\r\n\
-Content-Length: 0\r\n\r\n"
+Content-Length: 0\r\n\
+Server : hplzh-TinyWebServer\r\n\
+"
 
-#define RESPONSE_500_LEN 83
+#define RESPONSE_500_LEN 167
 
 void header(
 	char* buf,

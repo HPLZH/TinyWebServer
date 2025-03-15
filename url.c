@@ -56,7 +56,8 @@ void urlDecode(char url[], size_t bufSize)
             char c1 = url[++i];
             char c0 = url[++i];
             int num = 0;
-            num = hex2dec(c1) * 16 + hex2dec(c0);
+            num = hex2dec(c1) * 16 +
+                  hex2dec(c0);
             res[res_len++] = num;
         }
     }
